@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="43d2e907-17c1-44df-b9df-c0ebfd1e6bfb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/markdown-navigator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -23,7 +20,8 @@
           <entry key="project.closed" value="2" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.open.time.8" value="1" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -57,7 +55,7 @@
           <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
             <state split_layout="SPLIT">
               <first_editor relative-caret-position="220">
-                <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
+                <caret line="52" selection-start-line="52" selection-end-line="52" />
               </first_editor>
               <second_editor>
                 <markdownNavigatorState />
@@ -105,6 +103,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -116,7 +115,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -151,6 +149,7 @@
       <updated>1536170458107</updated>
       <workItem from="1536170459664" duration="329000" />
       <workItem from="1536176467788" duration="65000" />
+      <workItem from="1536176575286" duration="538000" />
     </task>
     <task id="LOCAL-00001" summary="add readme">
       <created>1536170554131</created>
@@ -163,7 +162,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="394000" />
+    <option name="totallyTimeSpent" value="932000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="59" y="61" width="1039" height="664" extended-state="0" />
@@ -204,7 +203,7 @@
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="220">
-            <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
+            <caret line="52" selection-start-line="52" selection-end-line="52" />
           </first_editor>
           <second_editor>
             <markdownNavigatorState />
