@@ -37,13 +37,13 @@ xml = `<?xml version="1.0" encoding="UTF-8"?> \
 
 console.log(xml);
 
-const datacite_doi_uri = "https://mds.datacite.org/metadata/10.17199/BRIGHTNESS/NMX0001";
-const datacite_test_uri = "https://mds.test.datacite.org/metadata/";
-const datacite_put_uri = "https://mds.datacite.org/metadata/10.17199/BRIGHTNESS/NMX0001";
+const datacite_doi_uri = "https://mds.datacite.org/doi/10.17199/BRIGHTNESS/NMX0001";
+const datacite_metadata_uri = "https://mds.datacite.org/metadata/10.17199/BRIGHTNESS/NMX0001";
+const datacite_test_uri = "https://mds.datacite.org/metadata/";
 
 const options = {
   method: "GET",
-  uri: datacite_test_uri,
+  uri: datacite_metadata_uri,
   auth: authentication
 };
 
