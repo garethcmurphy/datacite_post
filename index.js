@@ -9,6 +9,7 @@ title = "Sample Data";
 technical_info = "Sample Data";
 abstract = "Sample Data";
 doi = "10.117199/BRIGHTNESS.5.1";
+resource_type = "NeXus HDF5 Files";
 
 xml = `<?xml version="1.0" encoding="UTF-8"?> \
 <resource xmlns="http://datacite.org/schema/kernel-4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-4 http://schema.datacite.org/meta/kernel-4/metadata.xsd">  \
@@ -30,7 +31,7 @@ xml = `<?xml version="1.0" encoding="UTF-8"?> \
     <description xml:lang="en-us" descriptionType="TechnicalInfo">${technical_info}</description>  \
     <description xml:lang="en-us" descriptionType="Abstract">${abstract}</description> \
   </descriptions>  \
-  <resourceType resourceTypeGeneral="Text">Deliverable</resourceType> \
+  <resourceType resourceTypeGeneral="Text">${resource_type}</resourceType> \
 </resource>`;
 
 console.log(xml);
