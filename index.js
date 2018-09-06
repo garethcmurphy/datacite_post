@@ -1,4 +1,5 @@
 const rp = require("request-promise");
+const authentication = require("/tmp/generic_config.json");
 
 first_name = "Gareth";
 last_name = "Murphy";
@@ -35,21 +36,25 @@ xml = `<?xml version="1.0" encoding="UTF-8"?> \
 </resource>`;
 
 console.log(xml);
-var options = {
-  method: "POST",
-  uri: "https://mds.test.datacite.org/metadata",
-  body: xml
+
+const datacite_doi_uri = "https://mds.datacite.org/metadata/10.17199/BRIGHTNESS/NMX0001";
+const datacite_test_uri = "https://mds.test.datacite.org/metadata/";
+const datacite_put_uri = "https://mds.datacite.org/metadata/10.17199/BRIGHTNESS/NMX0001";
+
+const options = {
+  method: "GET",
+  uri: datacite_test_uri,
+  auth: authentication
 };
 
-/*
 rp(options)
-    .then(function (parsedBody) {
-	console.log("it worked");
-        // POST succeeded...
-    })
-    .catch(function (err) {
-	console.log("it failed");
-	console.log(err);
-        // POST failed...
-    });
-	*/
+  .then(function(parsedBody) {
+    console.log("it worked");
+    console.log(parsedBody);
+    // POST succeeded...
+  })
+  .catch(function(err) {
+    console.log("it failed");
+    console.log(err);
+    // POST failed...
+  });
