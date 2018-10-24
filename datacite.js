@@ -1,28 +1,38 @@
 const rp = require("request-promise");
+var base64 = require("base-64");
+
 const datacite_authentication = require("/tmp/generic_config.json");
 
-const first_name = "Gareth";
-const last_name = "Murphy";
 const affiliation = "ESS";
 const publisher = "ESS";
 const publication_year = "2018";
 const title = "Sample Data";
-const abstract = "Sample Data";
-const doi = "10.5072/BRIGHTNESS/NMX0001";
+const abstract = "This is sample data generated for ESS detector under grant number BrightnESS";
+const doi = "10.5072/" + Math.random().toString(36).substring(7);
 const resource_type = "NeXus HDF5 Files";
 const url = "https://doi.esss.se/detail/10.17199%252FBRIGHTNESS%252FNMX0001";
+const authors = ["Dorothea Pfeiffer", "Anton Khaplanov"];
 
-const xml = `<?xml version="1.0" encoding="UTF-8"?> \
+const xmlhead = `<?xml version="1.0" encoding="UTF-8"?> \
 <resource xmlns="http://datacite.org/schema/kernel-4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-4 http://schema.datacite.org/meta/kernel-4/metadata.xsd">  \
   <identifier identifierType=\"DOI\">${doi}</identifier>  \
-  <creators> \
-    <creator> \
+  <creators>`;
+
+let xmlcreators ="";
+for ( const author of authors){
+  const first_name = author.split(" ")[0];
+  const last_name = author.split(" ").splice(-1);
+  const xmlcreator = `<creator> \
       <creatorName>${last_name}, ${first_name}</creatorName>  \
       <givenName>${first_name}</givenName>  \
       <familyName>${last_name}</familyName>\  
       <affiliation>${affiliation}</affiliation> \
-    </creator> \
-  </creators>  \
+    </creator>`;
+  xmlcreators = xmlcreators + xmlcreator;
+}
+
+
+const xml_end = `</creators>  \
   <titles> \
     <title>${title} </title> \
   </titles>  \
@@ -34,38 +44,38 @@ const xml = `<?xml version="1.0" encoding="UTF-8"?> \
   <resourceType resourceTypeGeneral="Dataset">${resource_type}</resourceType> \
 </resource>`;
 
-const register_plain_text = `#Content-Type:text/plain;charset=UTF-8
-doi= ${doi}
-url= ${url}`;
 
+const xml = xmlhead + xmlcreators + xml_end;
 console.log(xml);
 
-const datacite_register_metadata =
-  "https://mds.datacite.org/metadata" + "/" + doi;
-const datacite_register_doi = "https://mds.datacite.org/doi" + "/" + doi;
 
+const datacite_endpoint = "https://api.datacite.org/dois";
 
-const datacite_endpoint = "https://api.datacite.org/dois"
+const encodedData = base64.encode(xml);
 
-
-
-const options_put = {
-  method: "PUT",
-  body: xml,
-  uri: datacite_register_metadata,
-  headers: {
-    "content-type": "application/xml;charset=UTF-8"
-  },
-  auth: datacite_authentication
+const payload = {
+  "data": {
+    "type": "dois",
+    "attributes": {
+      "doi": doi,
+      "xml": encodedData
+    },
+    "relationships": {
+      "client": {
+        "data": {
+          "type": "clients",
+          "id": "demo.esss"
+        }
+      }
+    }
+  }
 };
 
-const options_register_put = {
-  method: "PUT",
-  body: register_plain_text,
-  uri: datacite_register_doi,
-  headers: {
-    "content-type": "text/plain;charset=UTF-8"
-  },
+const options_put = {
+  method: "POST",
+  body: payload,
+  json: true,
+  uri: datacite_endpoint,
   auth: datacite_authentication
 };
 
@@ -82,29 +92,14 @@ rp(options_put)
     // POST failed...
   });
 
-rp(options_register_put)
-  .then(function(parsedBody) {
-    console.log("register doi worked");
-    console.log(parsedBody);
-    // POST succeeded...
-  })
-  .catch(function(err) {
-    console.log("register doi failed");
-    console.log(err);
-    // POST failed...
-  });
-
-
-const datacite_metadata_uri =
-  "https://mds.datacite.org/metadata" + "/" + doi;
 
 const options_get = {
   method: "GET",
-  uri: datacite_metadata_uri,
-  auth: datacite_authentication
+  uri: datacite_endpoint
 };
 
 
+/*
 rp(options_get)
   .then(function(parsedBody) {
     console.log("get worked");
@@ -116,3 +111,4 @@ rp(options_get)
     console.log(err);
     // POST failed...
   });
+  */
